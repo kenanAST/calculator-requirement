@@ -1,16 +1,35 @@
 from tkinter import *
 from display import Display
+import datetime
+import threading
+import time
 
-
-def btn_clicked(command):
-    main_display.evaluate_screen(command)
+# main_display.input_line(position)
 
 window = Tk()
 window.title('Scientific Calculator')
 window.geometry("414x896")
 window.configure(bg = "#ebf2fa")
 
-canvas = Canvas(
+position = 0
+
+def btn_clicked(command):
+    try:
+        main_display.stack.remove("|")
+    except:
+        pass
+    global position 
+    position += 1
+    main_display.evaluate_screen(command)
+
+
+def input_display():
+    global position
+    while(True):
+        print(position)
+        main_display.input_line(position)
+
+topcanvas = Canvas(
     window,
     bg = "#ebf2fa",
     height = 896,
@@ -18,11 +37,21 @@ canvas = Canvas(
     bd = 0,
     highlightthickness = 0,
     relief = "ridge")
-canvas.place(x = 0, y = 0)
-
-main_display = Display([], canvas)
+topcanvas.place(x = 0, y = 0)
 
 
+lowercanvas = Canvas(
+    window,
+    bg = "#00FF00",
+    height = 100,
+    width = 414,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge")
+lowercanvas.place(x = 0, y = 200)
+
+main_display = Display([], lowercanvas, topcanvas)
+threading.Thread(target = input_display).start()
 img0 = PhotoImage(file = f"assets/img0.png")
 b0 = Button(
     image = img0,
