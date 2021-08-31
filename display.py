@@ -25,10 +25,10 @@ class Display:
 
     def update_totalScreen(self):
         self.canvas.create_text(
-        375, 160.5,
+        375, 200,
         text = str(eval(self.format_displayScreen())),
         fill = "#002a3c",
-        font = ("Abel-Regular", int(89.57142639160156)),
+        font = ("Abel-Regular", int(72)),
         anchor = "se")
 
 

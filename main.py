@@ -262,7 +262,7 @@ b18 = Button(
     image = img18,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("x"),
+    command = lambda: btn_clicked("*"),
     relief = "flat")
 
 b18.place(
