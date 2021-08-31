@@ -10,28 +10,32 @@ class Display:
     def format_displayScreen(self):
         lowerText = ""
         for text in self.stack:
-            lowerText += text + " "
+            lowerText += text
         return lowerText
 
     def update_lowerScreen(self):
+        self.canvas.delete("all")
         self.canvas.create_text(
-            256.0, 234.0,
+            375, 234.0,
             text = self.format_displayScreen(),
             fill = "#427aa1",
-            font = ("Abel-Regular", int(22.39285659790039)))
+            font = ("Abel-Regular", int(22.39285659790039)),
+            anchor = "se")
+            #22.39285659790039
 
-    def update_totalScreen(self, lsValue):
+    def update_totalScreen(self):
         self.canvas.create_text(
-        290.0, 160.5,
-        text = str(eval(lsValue)),
+        375, 160.5,
+        text = str(eval(self.format_displayScreen())),
         fill = "#002a3c",
-        font = ("Abel-Regular", int(89.57142639160156)))
+        font = ("Abel-Regular", int(89.57142639160156)),
+        anchor = "se")
 
 
     def evaluate_screen(self, value):
         if(value == "total"):
-            pass
-        elif(value == "8"):
-            self.stack.append("8")
+            self.update_totalScreen()
+        else:
+            self.stack.append(value)
             print(self.stack)
             self.update_lowerScreen()
