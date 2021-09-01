@@ -1,9 +1,7 @@
 from tkinter import *
 from display import Display
-import datetime
 import threading
-import time
-import sys
+
 
 # main_display.input_line(position)
 
@@ -20,7 +18,10 @@ def btn_clicked(command):
     except:
         pass
     global position 
-    position += 1
+    if(command != "pop" and command != "total"):
+        position += 1
+    elif(command == "pop" and (position > 0)):
+        position-=1
     main_display.update_lowerScreen()
     main_display.evaluate_screen(command, position)
 
@@ -32,7 +33,7 @@ def goLeft():
 
 def goRight():
     global position
-    if(position < len(main_display.stack)):
+    if(position < len(main_display.stack) - 1):
         position+=1
         main_display.update_lowerScreen()
 
@@ -40,7 +41,6 @@ def goRight():
 def input_display():
     global position
     while(True):
-        print(position)
         main_display.input_line(position)
 
 topcanvas = Canvas(
@@ -65,7 +65,7 @@ lowercanvas = Canvas(
 lowercanvas.place(x = 0, y = 150)
 
 
-canvas = Canvas(
+historyCanvas = Canvas(
     window,
     bg = "#ffffff",
     height = 400,
@@ -73,10 +73,10 @@ canvas = Canvas(
     bd = 0,
     highlightthickness = 0,
     relief = "ridge")
-canvas.place(x = 535, y = 0)
+historyCanvas.place(x = 535, y = 0)
 
 
-main_display = Display([], lowercanvas, topcanvas)
+main_display = Display([], lowercanvas, topcanvas, historyCanvas)
 inputField = threading.Thread(target = input_display, daemon=True)
 inputField.start()
 img0 = PhotoImage(file = f"assets/img0.png")
@@ -107,13 +107,6 @@ b1.place(
     x = 165, y = 481,
     width = 49,
     height = 38)
-
-canvas.create_text(
-    10, 10,
-    text = "History",
-    fill = "#427aa1",
-    font = ("Abel-Regular", int(22.39285659790039)),
-    anchor="nw")
 
 img2 = PhotoImage(file = f"assets/img2.png")
 b2 = Button(
@@ -302,7 +295,7 @@ b16 = Button(
     image = img16,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("(/))"),
+    command = lambda: btn_clicked("(/)"),
     relief = "flat")
 
 b16.place(
@@ -328,7 +321,7 @@ b18 = Button(
     image = img18,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("exponent"),
+    command = lambda: btn_clicked("()^2"),
     relief = "flat")
 
 b18.place(
@@ -414,20 +407,6 @@ b24.place(
     width = 20,
     height = 40)
 
-
-canvas.create_text(
-    305, 125,
-    text = "120",
-    fill = "#002a3c",
-    font = ("Abel-Regular", int(36.0)),
-    anchor="se")
-
-canvas.create_text(
-    305, 160,
-    text = "50 - 10 - 10 - 10 + 100",
-    fill = "#427aa1",
-    font = ("Abel-Regular", int(14)),
-    anchor="se")
 
 img25 = PhotoImage(file = f"assets/img25.png")
 b25 = Button(

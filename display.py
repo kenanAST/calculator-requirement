@@ -1,23 +1,25 @@
 from time import time
 from tkinter import *
 import time
+import history
+import math
 from typing import cast
 
 class Display:
 
     ans = 0
 
-    def __init__(self, stack, lowercanvas, topcanvas):
+    def __init__(self, stack, lowercanvas, topcanvas, historyCanvas):
+        self.historyStack = []
         self.stack = stack
         self.lowercanvas = lowercanvas
         self.topcanvas = topcanvas
-
+        self.historySection = history.History(self.historyStack, historyCanvas)
 
 
     def input_line(self, input_position):
         self.stack.insert(input_position, "|")
         self.update_lowerScreen()
-        print("Removes")
         time.sleep(0.4)
         try: 
             self.stack.remove("|")
@@ -33,6 +35,18 @@ class Display:
             lowerText += text
         return lowerText
 
+
+    def solveFormat(self):
+        string = self.format_displayScreen()
+        string = string.replace("sin(", "math.sin(")
+        string = string.replace("cos(", "math.cos(")
+        string = string.replace("tan(", "math.tan(")
+        string = string.replace("log(", "math.log(")
+        string = string.replace("e", "math.e")
+        string = string.replace("π", "math.pi")
+        string = string.replace("^", "**")
+        print("STRING: " + string)
+        return string
 
     # def update_lowerScreen(self):
     #     e = Entry(self.canvas)
@@ -51,25 +65,41 @@ class Display:
             # 22.39285659790039
 
     def update_totalScreen(self):
+        print(self.ans)
         self.topcanvas.delete("all")
-        try:
-            toptext = str(eval(self.format_displayScreen()))
-        except:
-            toptext = "Syntax Error"
-        self.topcanvas.create_text(
-        525, 75,
-        text = toptext,
-        fill = "#002a3c",
-        font = ("Abel-Regular", int(48)),
-        anchor = "se")
-        ans = [toptext]
+        if(self.stack != []):
+            try:
+                toptext = str(round(eval(self.solveFormat()),2))
+            except:
+                toptext = "Syntax Error"
+            self.topcanvas.create_text(
+            525, 75,
+            text = toptext,
+            fill = "#002a3c",
+            font = ("Abel-Regular", int(48)),
+            anchor = "se")
+            if toptext != "Syntax Error":
+                self.historySection.stack.append(([toptext],[self.format_displayScreen()]))
+                self.historySection.drawHistoryLine()
+                self.ans = toptext
 
 
     def evaluate_screen(self, value, position):
         if(value == "total"):
             self.update_totalScreen()
+        elif(value == "clear"):
+            self.stack = []
+            self.update_lowerScreen()
+            self.update_totalScreen()
+        elif(value == "clearAll"):
+            self.stack = []
+            self.update_lowerScreen()
+            self.update_totalScreen()
+            self.historySection.stack = []
+            self.historySection.drawHistoryLine()
         elif(value == "pop"):
-            self.stack.pop(position - 1)
+            print( "POSITIONNNN: " + str(position))
+            self.stack.pop(position)
             self.update_lowerScreen()
         else:
             self.stack.insert(position - 1, value)
