@@ -8,7 +8,7 @@ import time
 
 window = Tk()
 window.title('Scientific Calculator')
-window.geometry("414x896")
+window.geometry("832x539")
 window.configure(bg = "#ebf2fa")
 
 position = 0
