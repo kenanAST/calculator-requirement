@@ -5,6 +5,8 @@ from typing import cast
 
 class Display:
 
+    ans = 0
+
     def __init__(self, stack, lowercanvas, topcanvas):
         self.stack = stack
         self.lowercanvas = lowercanvas
@@ -49,22 +51,26 @@ class Display:
             # 22.39285659790039
 
     def update_totalScreen(self):
+        self.topcanvas.delete("all")
+        try:
+            toptext = str(eval(self.format_displayScreen()))
+        except:
+            toptext = "Syntax Error"
         self.topcanvas.create_text(
         525, 75,
-        text = str(eval(self.format_displayScreen())),
+        text = toptext,
         fill = "#002a3c",
         font = ("Abel-Regular", int(48)),
         anchor = "se")
-        self.stack = [str(eval(self.format_displayScreen()))]
+        ans = [toptext]
 
 
-    def evaluate_screen(self, value):
+    def evaluate_screen(self, value, position):
         if(value == "total"):
             self.update_totalScreen()
         elif(value == "pop"):
-            self.stack.pop()
+            self.stack.pop(position - 1)
             self.update_lowerScreen()
         else:
-            self.stack.append(value)
-            print(self.stack)
+            self.stack.insert(position - 1, value)
             self.update_lowerScreen()

@@ -21,7 +21,20 @@ def btn_clicked(command):
         pass
     global position 
     position += 1
-    main_display.evaluate_screen(command)
+    main_display.update_lowerScreen()
+    main_display.evaluate_screen(command, position)
+
+def goLeft():
+    global position
+    if(position > 0):
+        position-=1
+        main_display.update_lowerScreen()
+
+def goRight():
+    global position
+    if(position < len(main_display.stack)):
+        position+=1
+        main_display.update_lowerScreen()
 
 
 def input_display():
@@ -74,7 +87,7 @@ b0 = Button(
     image = img0,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = goRight,
     relief = "flat")
 
 b0.place(
@@ -87,7 +100,7 @@ b1 = Button(
     image = img1,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = goLeft,
     relief = "flat")
 
 b1.place(
@@ -107,7 +120,7 @@ b2 = Button(
     image = img2,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("."),
     relief = "flat")
 
 b2.place(
@@ -120,7 +133,7 @@ b3 = Button(
     image = img3,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("0"),
     relief = "flat")
 
 b3.place(
@@ -133,7 +146,7 @@ b4 = Button(
     image = img4,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("1"),
     relief = "flat")
 
 b4.place(
@@ -146,7 +159,7 @@ b5 = Button(
     image = img5,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("sin("),
     relief = "flat")
 
 b5.place(
@@ -159,7 +172,7 @@ b6 = Button(
     image = img6,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("cos("),
     relief = "flat")
 
 b6.place(
@@ -172,7 +185,7 @@ b7 = Button(
     image = img7,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked(")"),
     relief = "flat")
 
 b7.place(
@@ -185,7 +198,7 @@ b8 = Button(
     image = img8,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("("),
     relief = "flat")
 
 b8.place(
@@ -198,7 +211,7 @@ b9 = Button(
     image = img9,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("tan("),
     relief = "flat")
 
 b9.place(
@@ -224,7 +237,7 @@ b11 = Button(
     image = img11,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("3"),
     relief = "flat")
 
 b11.place(
@@ -237,7 +250,7 @@ b12 = Button(
     image = img12,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("4"),
     relief = "flat")
 
 b12.place(
@@ -250,7 +263,7 @@ b13 = Button(
     image = img13,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("π"),
     relief = "flat")
 
 b13.place(
@@ -263,7 +276,7 @@ b14 = Button(
     image = img14,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("log("),
     relief = "flat")
 
 b14.place(
@@ -276,7 +289,7 @@ b15 = Button(
     image = img15,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("ln("),
     relief = "flat")
 
 b15.place(
@@ -289,7 +302,7 @@ b16 = Button(
     image = img16,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("(/))"),
     relief = "flat")
 
 b16.place(
@@ -302,7 +315,7 @@ b17 = Button(
     image = img17,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("10^"),
     relief = "flat")
 
 b17.place(
@@ -315,7 +328,7 @@ b18 = Button(
     image = img18,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("exponent"),
     relief = "flat")
 
 b18.place(
@@ -328,7 +341,7 @@ b19 = Button(
     image = img19,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("5"),
     relief = "flat")
 
 b19.place(
@@ -341,7 +354,7 @@ b20 = Button(
     image = img20,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("6"),
     relief = "flat")
 
 b20.place(
@@ -354,7 +367,7 @@ b21 = Button(
     image = img21,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("7"),
     relief = "flat")
 
 b21.place(
@@ -367,7 +380,7 @@ b22 = Button(
     image = img22,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("e"),
     relief = "flat")
 
 b22.place(
@@ -380,7 +393,7 @@ b23 = Button(
     image = img23,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("8"),
     relief = "flat")
 
 b23.place(
@@ -393,7 +406,7 @@ b24 = Button(
     image = img24,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("9"),
     relief = "flat")
 
 b24.place(
@@ -421,7 +434,7 @@ b25 = Button(
     image = img25,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("clear"),
     relief = "flat")
 
 b25.place(
@@ -434,7 +447,7 @@ b26 = Button(
     image = img26,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("clearAll"),
     relief = "flat")
 
 b26.place(
@@ -442,18 +455,6 @@ b26.place(
     width = 26,
     height = 33)
 
-img27 = PhotoImage(file = f"assets/img27.png")
-b27 = Button(
-    image = img27,
-    borderwidth = 0,
-    highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
-    relief = "flat")
-
-b27.place(
-    x = 425, y = 199,
-    width = 27,
-    height = 27)
 
 img28 = PhotoImage(file = f"assets/img28.png")
 b28 = Button(
