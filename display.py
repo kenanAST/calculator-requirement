@@ -16,11 +16,11 @@ class Display:
         self.stack.insert(input_position, "|")
         self.update_lowerScreen()
         print("Removes")
-        time.sleep(0.5)
+        time.sleep(0.4)
         try: 
             self.stack.remove("|")
             self.update_lowerScreen()
-            time.sleep(0.5)
+            time.sleep(0.4)
         except ValueError:
             pass
 
@@ -41,7 +41,7 @@ class Display:
     def update_lowerScreen(self):
         self.lowercanvas.delete("all")
         self.lowercanvas.create_text(
-            375, 25,
+            525, 35,
             text = self.format_displayScreen(),
             fill = "#427aa1",
             font = ("Abel-Regular", int(22.39285659790039)),
@@ -50,16 +50,20 @@ class Display:
 
     def update_totalScreen(self):
         self.topcanvas.create_text(
-        375, 200,
+        525, 75,
         text = str(eval(self.format_displayScreen())),
         fill = "#002a3c",
         font = ("Abel-Regular", int(48)),
         anchor = "se")
+        self.stack = [str(eval(self.format_displayScreen()))]
 
 
     def evaluate_screen(self, value):
         if(value == "total"):
             self.update_totalScreen()
+        elif(value == "pop"):
+            self.stack.pop()
+            self.update_lowerScreen()
         else:
             self.stack.append(value)
             print(self.stack)

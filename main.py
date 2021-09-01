@@ -32,24 +32,24 @@ def input_display():
 
 topcanvas = Canvas(
     window,
-    bg = "#0000FF",
-    height = 200,
-    width = 414,
+    bg = "#ffffff",
+    height = 80,
+    width = 800,
     bd = 0,
     highlightthickness = 0,
     relief = "ridge")
-topcanvas.place(x = 0, y = 100)
+topcanvas.place(x = 0, y = 75)
 
 
 lowercanvas = Canvas(
     window,
-    bg = "#00FF00",
-    height = 100,
-    width = 414,
+    bg = "#ffffff",
+    height = 40,
+    width = 800,
     bd = 0,
     highlightthickness = 0,
     relief = "ridge")
-lowercanvas.place(x = 0, y = 200)
+lowercanvas.place(x = 0, y = 150)
 
 
 canvas = Canvas(
@@ -460,7 +460,7 @@ b28 = Button(
     image = img28,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("pop"),
     relief = "flat")
 
 b28.place(
@@ -473,7 +473,7 @@ b29 = Button(
     image = img29,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("total"),
     relief = "flat")
 
 b29.place(
@@ -486,7 +486,7 @@ b30 = Button(
     image = img30,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("+"),
     relief = "flat")
 
 b30.place(
@@ -499,7 +499,7 @@ b31 = Button(
     image = img31,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("-"),
     relief = "flat")
 
 b31.place(
@@ -512,7 +512,7 @@ b32 = Button(
     image = img32,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("*"),
     relief = "flat")
 
 b32.place(
@@ -525,7 +525,7 @@ b33 = Button(
     image = img33,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("2"),
+    command = lambda: btn_clicked("/"),
     relief = "flat")
 
 b33.place(
