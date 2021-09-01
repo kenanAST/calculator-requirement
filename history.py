@@ -20,7 +20,7 @@ class History:
         anchor="nw")
         for count, history in enumerate(reversed(self.stack)):
             self.canvas.create_text(
-                305, 125 + (count*90),
+                305, 125 + (count*93),
                 text = history[0],
                 fill = "#002a3c",
                 font = ("Abel-Regular", int(36.0)),
@@ -28,7 +28,7 @@ class History:
             )
 
             self.canvas.create_text(
-                305, (140 + (count*90)),
+                305, (140 + (count*93)),
                 text = history[1],
                 fill = "#427aa1",
                 font = ("Abel-Regular", int(14)),

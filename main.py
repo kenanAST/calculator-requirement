@@ -45,7 +45,7 @@ def input_display():
 
 topcanvas = Canvas(
     window,
-    bg = "#ffffff",
+    bg = "#ebf2fa",
     height = 80,
     width = 800,
     bd = 0,
@@ -56,7 +56,7 @@ topcanvas.place(x = 0, y = 75)
 
 lowercanvas = Canvas(
     window,
-    bg = "#ffffff",
+    bg = "#ebf2fa",
     height = 40,
     width = 800,
     bd = 0,
@@ -67,14 +67,22 @@ lowercanvas.place(x = 0, y = 150)
 
 historyCanvas = Canvas(
     window,
-    bg = "#ffffff",
-    height = 400,
+    bg = "#ebf2fa",
+    height = 800,
     width = 315,
     bd = 0,
     highlightthickness = 0,
     relief = "ridge")
 historyCanvas.place(x = 535, y = 0)
 
+
+historyCanvas.create_text(
+    10, 10,
+    text = "History",
+    fill = "#427aa1",
+    font = ("Abel-Regular", int(22.39285659790039)),
+    anchor="nw"
+)
 
 main_display = Display([], lowercanvas, topcanvas, historyCanvas)
 inputField = threading.Thread(target = input_display, daemon=True)
@@ -295,7 +303,7 @@ b16 = Button(
     image = img16,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("(/)"),
+    command = lambda: btn_clicked("/"),
     relief = "flat")
 
 b16.place(
@@ -321,7 +329,7 @@ b18 = Button(
     image = img18,
     borderwidth = 0,
     highlightthickness = 0,
-    command = lambda: btn_clicked("()^2"),
+    command = lambda: btn_clicked("^"),
     relief = "flat")
 
 b18.place(
