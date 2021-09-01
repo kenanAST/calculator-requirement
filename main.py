@@ -3,6 +3,7 @@ from display import Display
 import datetime
 import threading
 import time
+import sys
 
 # main_display.input_line(position)
 
@@ -31,13 +32,13 @@ def input_display():
 
 topcanvas = Canvas(
     window,
-    bg = "#ebf2fa",
-    height = 896,
+    bg = "#0000FF",
+    height = 200,
     width = 414,
     bd = 0,
     highlightthickness = 0,
     relief = "ridge")
-topcanvas.place(x = 0, y = 0)
+topcanvas.place(x = 0, y = 100)
 
 
 lowercanvas = Canvas(
@@ -63,7 +64,8 @@ canvas.place(x = 535, y = 0)
 
 
 main_display = Display([], lowercanvas, topcanvas)
-threading.Thread(target = input_display).start()
+inputField = threading.Thread(target = input_display, daemon=True)
+inputField.start()
 img0 = PhotoImage(file = f"assets/img0.png")
 
 
@@ -534,5 +536,4 @@ b33.place(
 
 window.resizable(False, False)
 window.mainloop()
-
 
