@@ -489,6 +489,19 @@ class Calculator:
             width = 20,
             height = 40)
 
+        self.factorial = PhotoImage(file = f"assets/factorial.png")
+        self.factorialButton = Button(
+            image = self.factorial,
+            borderwidth = 0,
+            highlightthickness = 0,
+            command = lambda: self.btn_clicked("fact("),
+            relief = "flat")
+
+        self.factorialButton.place(
+            x = 125, y = 193,
+            width = 20,
+            height = 40)
+
         self.window.resizable(False, False)
     
     def btn_clicked(self, command):

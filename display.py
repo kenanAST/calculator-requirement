@@ -6,8 +6,6 @@ import math
 from typing import cast
 
 class Display:
-
-
     def __init__(self, stack, lowercanvas, topcanvas, historyCanvas):
         self.ans = 0
         self.historyStack = []
@@ -20,11 +18,11 @@ class Display:
     def input_line(self, input_position):
         self.stack.insert(input_position, "|")
         self.update_lowerScreen()
-        time.sleep(0.4)
+        time.sleep(0.3)
         try: 
             self.stack.remove("|")
             self.update_lowerScreen()
-            time.sleep(0.4)
+            time.sleep(0.3)
         except ValueError:
             pass
 
@@ -46,6 +44,7 @@ class Display:
         string = string.replace("e", "math.e")
         string = string.replace("π", "math.pi")
         string = string.replace("^", "**")
+        string = string.replace("fact(", "math.factorial(")
         print("STRING: " + string)
         return string
 
@@ -68,18 +67,23 @@ class Display:
     def update_totalScreen(self):
         print(self.ans)
         self.topcanvas.delete("all")
+        checker = ""
         if(self.stack != []):
             try:
-                toptext = str(round(eval(self.solveFormat()),2))
-            except:
+                toptext = str(round(eval(self.solveFormat()),4))
+            except SyntaxError:
                 toptext = "Syntax Error"
+                checker = "Syntax Error"
+            except Exception as e:
+                toptext = e
+                checker = e
             self.topcanvas.create_text(
             525, 75,
             text = toptext,
             fill = "#002a3c",
-            font = ("Abel-Regular", int(48)),
+            font = ("Abel-Regular", int(18)),
             anchor = "se")
-            if toptext != "Syntax Error":
+            if toptext != checker:
                 self.historySection.stack.append(([toptext],[self.format_displayScreen()]))
                 self.historySection.drawHistoryLine()
                 self.ans = toptext
