@@ -1,7 +1,3 @@
-
-
-
-
 class History:
 
     def __init__(self, stack, canvas):
@@ -24,13 +20,11 @@ class History:
                 text = history[0],
                 fill = "#002a3c",
                 font = ("Abel-Regular", int(36.0)),
-                anchor="se"
-            )
+                anchor="se")
 
             self.canvas.create_text(
                 305, (140 + (count*93)),
                 text = history[1],
                 fill = "#427aa1",
                 font = ("Abel-Regular", int(14)),
-                anchor="se"
-            )
+                anchor="se")

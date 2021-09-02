@@ -7,9 +7,9 @@ from typing import cast
 
 class Display:
 
-    ans = 0
 
     def __init__(self, stack, lowercanvas, topcanvas, historyCanvas):
+        self.ans = 0
         self.historyStack = []
         self.stack = stack
         self.lowercanvas = lowercanvas
