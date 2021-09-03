@@ -92,6 +92,24 @@ class Display:
     def evaluate_screen(self, value, position):
         if(value == "total"):
             self.update_totalScreen()
+        elif(value == "sin("):
+            self.stack.insert(0, value)
+            self.stack.insert(len(self.stack),")")
+            self.update_totalScreen()
+            self.stack = []
+            self.update_lowerScreen()
+        elif(value == "cos("):
+            self.stack.insert(0, value)
+            self.stack.insert(len(self.stack),")")
+            self.update_totalScreen()
+            self.stack = []
+            self.update_lowerScreen()
+        elif(value == "tan("):
+            self.stack.insert(0, value)
+            self.stack.insert(len(self.stack),")")
+            self.update_totalScreen()
+            self.stack = []
+            self.update_lowerScreen()
         elif(value == "clear"):
             self.stack = []
             self.update_lowerScreen()
