@@ -95,32 +95,26 @@ class Display:
         elif(value == "sin("):
             self.stack.insert(0, value)
             self.stack.insert(len(self.stack),")")
-            self.update_totalScreen()
             self.update_lowerScreen()
         elif(value == "cos("):
             self.stack.insert(0, value)
             self.stack.insert(len(self.stack),")")
-            self.update_totalScreen()
             self.update_lowerScreen()
         elif(value == "tan("):
             self.stack.insert(0, value)
             self.stack.insert(len(self.stack),")")
-            self.update_totalScreen()
             self.update_lowerScreen()
         elif(value == "log("):
             self.stack.insert(0, value)
             self.stack.insert(len(self.stack),")")
-            self.update_totalScreen()
             self.update_lowerScreen()
         elif(value == "ln("):
             self.stack.insert(0, value)
             self.stack.insert(len(self.stack),")")
-            self.update_totalScreen()
             self.update_lowerScreen()
         elif(value == "fact("):
             self.stack.insert(0, value)
             self.stack.insert(len(self.stack),")")
-            self.update_totalScreen()
             self.update_lowerScreen()
         elif(value == "clear"):
             self.stack = []
